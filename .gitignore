@@ -1,0 +1,9 @@
+vendor/
+assets/php/vendor
+assets/php/composer.json
+assets/php/composer.lock
+.env
+composer.json
+composer.lock
+package-lock.json
+package.json
