@@ -1,6 +1,6 @@
 <?php
     if(isset($_COOKIE["email"])){
-        header("Location:my-profile.php");
+        header("Location:Admin/my-profile.php");
     }
 
 ?>
@@ -69,7 +69,7 @@
                                             session_start();
                                              if(isset($_COOKIE["email"]))
                                              {
-                                                 include "assets/php/session.php";
+                                                 include "php/php-files/session.php";
                                                 //  print_r($data);
                                         ?>
                                             <?=$data["first_name"]." ".$data["last_name"]?>
@@ -251,7 +251,7 @@
                 {   console.log(1);
                     $("#Register-btn").val(".....Please wait");
                     $.ajax({
-                      url:"assets/php/action.php",
+                      url:"includes/action.php",
                       method:"post",
                       data:$("#Register-form").serialize()+"&action=Register",
                       dataType:"json",
@@ -259,7 +259,7 @@
                         console.log(response);
                         if(response.status=="success")
                         {
-                            url="login.php";
+                            url="login.php?";
                             window.location.href=url;
                         }
                         else if(response.status=="failed")

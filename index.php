@@ -1,6 +1,6 @@
 <?php
     if(isset($_COOKIE["email"])){
-        header("Location:my-profile.php");
+        header("Location:admin/my-profile.php");
     }
 
 ?>

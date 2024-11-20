@@ -1318,8 +1318,8 @@ header .navbar .container .navbar-collapse .navbar-nav .dropdown .dropdown-menu 
   border-radius: 50%;
   background-color: black;
   background-image: -moz-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
-  background-image: -webkit-linear-gradient(135deg, #00c900 0%, #8ae501 100%));
-  background-image: -ms-linear-gradient(135deg, #00c900 0%, #8ae501 100%));
+  background-image: -webkit-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
+  background-image: -ms-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
   background-image: linear-gradient(135deg, #00c900 0%, #8ae501 100%);
 }
 
@@ -1343,8 +1343,8 @@ header .navbar .container .navbar-collapse .navbar-nav .dropdown .dropdown-menu 
   border-radius: 50%;
   background-color: black;
   background-image: -moz-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
-  background-image: -webkit-linear-gradient(135deg, #00c900 0%, #8ae501 100%));
-  background-image: -ms-linear-gradient(135deg, #00c900 0%, #8ae501 100%));
+  background-image: -webkit-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
+  background-image: -ms-linear-gradient(135deg, #00c900 0%, #8ae501 100%);
   background-image: linear-gradient(135deg, #00c900 0%, #8ae501 100%);
 }
 

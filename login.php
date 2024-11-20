@@ -1,6 +1,6 @@
 <?php
     if(isset($_COOKIE["email"])){
-        header("Location:my-profile.php");
+        header("Location:Admin/my-profile.php");
     }
 
 ?>
@@ -239,18 +239,19 @@
             $("#Login-btn").click(function(e){
                 e.preventDefault();
                 $.ajax({
-                    url:"assets/php/action.php",
+                    url:"includes/action.php",
                     method:"post",
                     data:$("#Login-form").serialize()+"&action=Login",
                     dataType:"json",
                     success:function(response){
                         console.log(response);
                         if(response.status=="success"){
-                            url="my-profile.php";
+                            url="Admin/my-profile.php";
                             window.location.href=url;
                         }
                         else if(response.status=="otp-send")
                         {   
+                            console.log("inside success");
                             url="otp-verify.php?otpsuccess="+encodeURIComponent(response.msg)+"&email="+response.email;
                             window.location.href=url;
                         }     

@@ -264,7 +264,7 @@
                 if($("#otp-form")[0].checkValidity())
                 {
                     $.ajax({
-                    url:"assets/php/action.php",
+                    url:"includes/action.php",
                     method:"post",
                     data:$("#otp-form").serialize()+"&action=otp",
                     dataType:"json",
@@ -275,7 +275,7 @@
                         }
                         else if(response.status=="loggedIn"){
                             console.log("inside redirect")
-                            url="my-profile.php?msg="+encodeURIComponent(response.msg);
+                            url="Admin/my-profile.php?msg="+encodeURIComponent(response.msg);
                             window.location.replace(url);
                         }
                         else if(response.status=="failed")

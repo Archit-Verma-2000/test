@@ -199,7 +199,7 @@
                                         </span>
                                     </div>';
                                 </div>
-                                <div id="form-success" style="background-image:none;"><!-- on succesfull mail submittion-->
+                                <div id="form-response" style="background-image:none;"><!-- on succesfull mail submittion-->
 
                                 </div>
                                 <div class="mb-3">
@@ -283,35 +283,25 @@
         $(document).ready(function(){
             $("#form-success").html('');
             $("#mail-btn").click(function(e){
-                console.log($("#contact-form")[0].checkValidity());
                 e.preventDefault();
-            
+                console.log("inside btn");
                 if($("#contact-form")[0].checkValidity())
                 {
+                    console.log("form validated");
                     $.ajax({
-                    url:"assets/php/action.php",
-                    method:"post",
-                    data:$("#contact-form").serialize()+"&action=Contact",
-                    success:function(response){
-                        console.log("inside success");
-                        console.log(response);
-                        $("#form-success").html(response);
-                    }
-                })
-                $("#form-success button").click(function(e){
-                        e.preventDefault();
-                        console.log("1");
-                        $(this).parent().addClass("dnone");
-                     });
-                }
-                else
-                {
-                    $(".dnone").removeClass("dnone");
-                    $("#form-error button").click(function(e){
-                        e.preventDefault();
-                        console.log("1");
-                        $(this).parent().addClass("dnone");
-                     });
+                        url:"includes/action.php",
+                        method:"post",
+                        data:$("#contact-form").serialize()+"&action=Contact",
+                        dataType:"json",
+                        success:function(response){
+                            console.log(response.msg);
+                           if(response.status=="success")
+                           {
+                                console.log(response.msg);
+                                $("#form-response").html(response.msg);
+                           }
+                        }
+                    });
                 }
             });
         });
