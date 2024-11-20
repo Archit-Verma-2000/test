@@ -49,12 +49,15 @@ use PHPMailer\PHPMailer\Exception;
              
                if($mail->send())
                {
-                    $msg="success+".$db->msg('success', "Mail has been sent");
-                    echo $msg;
+                    $msg=["status"=>"success","msg"=>$db->msg('success', "Mail has been sent")];
+                    $json=json_encode($msg);
+                    echo $json;
                }
                else
                {
-                   echo $db->msg('danger', "Something wrong sending email");
+                $msg=["status"=>"failed","msg"=>$db->msg('success', "Mail failed to send")];
+                $json=json_encode($msg);
+                echo $json;
                }
              }  
             catch (Exception $e) {

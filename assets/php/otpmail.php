@@ -47,12 +47,15 @@ $mail = new PHPMailer(true);
       
         if($mail->send())
         {
-            $msg="otp-send+".$db->msg('success', "OTP SEND ")."+".$email;
-            echo $msg;
+            $msg=["status"=>"otp-send","msg"=>$db->msg('success', "OTP SEND "),"email"=>$email];
+            $json=json_encode($msg);
+            echo $json;
         }
         else
         {
-            echo $db->msg("danger","Mail didnt send");
+            $msg=["status"=>"failed","msg"=>$db->msg("danger","Mail didnt send")];
+            $json=json_encode($msg);
+            echo $json;
         }
       }  
      catch (Exception $e) {

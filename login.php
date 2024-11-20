@@ -242,22 +242,21 @@
                     url:"assets/php/action.php",
                     method:"post",
                     data:$("#Login-form").serialize()+"&action=Login",
+                    dataType:"json",
                     success:function(response){
                         console.log(response);
-                        var arr=response.split("+");
-                        if(arr[0]=="otp-send"){
-                            url="otp-verify.php?otpsuccess="+encodeURIComponent(arr[1])+"&email="+encodeURIComponent(arr[2]);
-                            window.location.href=url;
-                        }
-                        else if(arr[0]=="otp-error")
-                        {   
-                          
-                            $("#Login-error").html(arr[1]);
-                        }     
-                        else if(response=="LoggedIn")
-                        {
+                        if(response.status=="success"){
                             url="my-profile.php";
                             window.location.href=url;
+                        }
+                        else if(response.status=="otp-send")
+                        {   
+                            url="otp-verify.php?otpsuccess="+encodeURIComponent(response.msg)+"&email="+response.email;
+                            window.location.href=url;
+                        }     
+                        else if(response.status=="failed")
+                        {
+                            $("#Login-error").html(response.msg);
                         }
                                
                     }

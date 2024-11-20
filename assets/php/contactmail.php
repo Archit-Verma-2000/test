@@ -42,11 +42,15 @@ try {
              
                if($mail->send())
                {
-                    echo $db->msg('success', "Mail has been sent");
+                    $msg=["status"=>"success","msg"=>$db->msg('success', "Mail has been sent")];
+                    $json=json_encode($msg);
+                    echo $json;
                }
                else
                {
-                   echo $db->msg('danger', "Something wrong sending email");
+                    $msg=["status"=>"failed","msg"=>$db->msg('danger', "Something wrong sending email")];
+                    $json=json_encode($msg);
+                    echo $json;
                }
              }  
             catch (Exception $e) {

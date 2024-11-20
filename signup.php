@@ -254,17 +254,17 @@
                       url:"assets/php/action.php",
                       method:"post",
                       data:$("#Register-form").serialize()+"&action=Register",
+                      dataType:"json",
                       success:function(response){
                         console.log(response);
-                        $arr=response.split("+");
-                        if($arr[0]=="success")
+                        if(response.status=="success")
                         {
                             url="login.php";
                             window.location.href=url;
                         }
-                        else
+                        else if(response.status=="failed")
                         {
-                            $("#Register-error").html(response);
+                            $("#Register-error").html(response.msg);
                         }
                       }  
                     })

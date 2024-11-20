@@ -156,7 +156,7 @@
                         ?>
                     </div>
                   
-                    <div id="Login-error">
+                    <div id="Login-response">
 
                     </div>
                     <h1 class="form_title">Otp verify</h1>
@@ -267,16 +267,20 @@
                     url:"assets/php/action.php",
                     method:"post",
                     data:$("#otp-form").serialize()+"&action=otp",
-                    success:function(response){
-                        console.log("inside otp-verify");
-                        console.log(response);
-                        // console.log(response=="LoggedIn");           
-                        if(response=="LoggedIn"){
-                            window.location.replace("my-profile.php");
+                    dataType:"json",
+                    success:function(response){     
+                        // console.log(response);   
+                        if(response.status=="success"){
+                            $("#Login-response").html(response.msg);
                         }
-                        else
+                        else if(response.status=="loggedIn"){
+                            console.log("inside redirect")
+                            url="my-profile.php?msg="+encodeURIComponent(response.msg);
+                            window.location.replace(url);
+                        }
+                        else if(response.status=="failed")
                         {   
-                            $("#Login-error").html(response);
+                            $("#Login-response").html(response.msg);
                         }            
                     }
                 })

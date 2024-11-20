@@ -17,18 +17,20 @@
        $userexist=$db->user_exists($fname,$lname,$email);
        if($userexist!=NULL)
        {
-        echo $db->msg("danger","User exists");
+            $msg=["status"=>"failed","msg"=>$db->msg("danger","User exists")];
+            $json=json_encode($msg);
+            echo $json;
        }
        else
        {
-        $db->Register($fname,$lname,$email,$phone,$hash);
-        require "registermail.php";         
+            $db->Register($fname,$lname,$email,$phone,$hash);
+            require "registermail.php";         
        }
     }
     else if(isset($_GET["action"])&&$_GET["action"]=="registerlink")
     {   
-        $email=$_GET["email"];
-        $db->update_user_authenticated($email);
+            $email=$_GET["email"];
+            $db->update_user_authenticated($email);
     }
     else if(isset($_POST["action"])&($_POST["action"]=="Login"))
     {
@@ -48,7 +50,9 @@
                         $res=$email;
                         $_SESSION["user"]=$res;
                         setcookie("email",$res,time()+60*60*24*30,"/");
-                        echo "LoggedIn";
+                        $msg=["status"=>"success","msg"=>$db->msg("success","Successfully logged in")];
+                        $json=json_encode($msg);
+                        echo $json;
                     }
                     else
                     {
@@ -60,26 +64,31 @@
                         }
                         else
                         {
-                            echo "errorrrrr";
+                            $msg=["status"=>"failed","msg"=>$db->msg("danger","OTP not send")];
+                            $json=json_encode($msg);
+                            echo $json;
                         } 
                     }
                 }
                 else
                 {
-                    $msg="otp-error+".$db->msg('danger', "User Not Authenticated");
-                    echo $msg;
+                    $msg=["status"=>"failed","msg"=>$db->msg("danger","User Not Authenticated")];
+                    $json=json_encode($msg);
+                    echo $json;
                 }
             }
             else
             {
-                $msg="otp-error+".$db->msg('danger', "Password doesnot match");
-                echo $msg;
+                    $msg=["status"=>"failed","msg"=>$db->msg("danger","Password doesnot match")];
+                    $json=json_encode($msg);
+                    echo $json;
             }
         }
         else
         {
-            $msg="otp-error+".$db->msg('danger', "User does not exists");
-            echo $msg;
+            $msg=["status"=>"failed","msg"=>$db->msg("danger","User does not exists")];
+            $json=json_encode($msg);
+            echo $json;
         }
    
     }
@@ -92,8 +101,9 @@
         // print_r($res);
         if($res==NULL)
         {
-            // echo "OTP is incorrect";
-            echo $db->msg("danger","OTP is incorrect");
+            $msg=["status"=>"failed","msg"=>$db->msg("danger","OTP is incorrect")];
+            $json=json_encode($msg);
+            echo $json;
         }
         else
         {
@@ -105,14 +115,18 @@
             if($email==NULL)
             {   
                 // echo "OTP expired";
-                echo $db->msg("danger","OTP expired");
+                $msg=["status"=>"failed","msg"=>$db->msg("danger","OTP expired")];
+                $json=json_encode($msg);
+                echo $json;
             }
             else
             {
                 $res=$email["email"];
                 $_SESSION["user"]=$res;
                 setcookie("email",$res,time()+60*60*24*30,"/");
-                echo "LoggedIn";
+                $msg=["status"=>"loggedIn","msg"=>$db->msg("success","loggedIn")];
+                $json=json_encode($msg);
+                echo $json;
             }
         }
     }
@@ -129,7 +143,9 @@
         if($pass!=$cpass)
         {
             // echo "yes";
-            echo $db->msg("danger","password doesnt match");
+            $msg=["status"=>"failed","msg"=>$db->msg("danger","password doesnt match")];
+            $json=json_encode($msg);
+            echo $json;
         }
         else
         {
@@ -137,13 +153,15 @@
             {
                 $_SESSION["user"]=$email;
                 setcookie("email",$email,time()+60*60*24*30,"/");
-                $msg=$db->msg("success","successfully updated");
-                $str="updated/$fname/$lname+$msg";
-                echo $str;
+                $msg=["status"=>"success","msg"=>$db->msg("sucess","successfully updated")];
+                $json=json_encode($msg);
+                echo $json;
             }
             else
             {
-                echo $db->msg("danger","Oops something went wrong");  
+                $msg=["status"=>"failed","msg"=>$db->msg("danger","Oops something went wrong")];
+                $json=json_encode($msg);
+                echo $json;
             }
         }
     }
@@ -171,12 +189,13 @@
                 $result=$db->spam_logs($email);
                 if($result==NULL)
                 {
-                    echo msg("danger","email is banned for 24 hours");
+                    $msg=["status"=>"failed","msg"=>$db->msg("danger","email is banned for 24 hours")];
+                    $json=json_encode($msg);
+                    echo $json;
                 }
             }
             else
             {
-                    echo "email send";
                     //  require "contactmail.php";
             }
         }
@@ -189,12 +208,16 @@
                 // echo "email banned"; 
                 if($result==NULL)
                 {
-                    echo msg("danger","email is banned for 24 hours");
+                    $msg=["status"=>"failed","msg"=>$db->msg("danger","email is banned for 24 hours")];
+                    $json=json_encode($msg);
+                    echo $json;
                 }        
             }
             else
             {
-                echo "email send";
+                $msg=["status"=>"success","msg"=>$db->msg("danger","email send")];
+                $json=json_encode($msg);
+                echo $json;
                 // require "contactmail.php";
             }
         }
