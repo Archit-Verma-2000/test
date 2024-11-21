@@ -8,15 +8,17 @@ Class Auth extends Connection{
         $data=htmlspecialchars($data);
         return $data;
     }
-    public function user_exists($fname,$lname,$email)
+    public function user_exists($email)
     {
-        $sql="SELECT email from db_user where email=:email AND first_name=:fname AND last_name=:lname";
+        $sql="SELECT email from db_user where email=:email";
         $stmt=$this->conn->prepare($sql);
-        $stmt->execute(["email"=>$email,"fname"=>$fname,"lname"=>$lname]);
+        $stmt->execute(["email"=>$email]);
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
+
+    /*-------Contact Form spam filter code-----------*/
     public function mail_user_add($name,$email){
         $res=$this->mail_user_exists($email);
         if($res==NULL)
@@ -27,6 +29,7 @@ Class Auth extends Connection{
         }
         $this->spam_logs($email);
     }
+
     public function mail_user_exists($email){
         $sql="SELECT email from mail_subscribers where email=:email";
         $stmt=$this->conn->prepare($sql);
@@ -34,14 +37,30 @@ Class Auth extends Connection{
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
         return($result);
     }
+
+    public function spam_count($email){
+        $sql="SELECT COUNT(*) as count  FROM spam_logs where email=:email AND submit_time > NOW()-INTERVAL 5 MINUTE";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute(["email"=>$email]);
+        $res=$stmt->fetch(PDO::FETCH_ASSOC);
+        $count=$res["count"];
+        return($count);
+       }
+       public function banned_user($email)
+       {
+           $sql="SELECT email from banned_user where email=:email";
+           $stmt=$this->conn->prepare($sql);
+           $stmt->execute(["email"=>$email]);
+           $result=$stmt->fetch(PDO::FETCH_ASSOC);
+           return $result;
+       }
+   
     public function spam_logs($email){
         if($this->spam_count($email)<5)
         {
         $sql="INSERT INTO  spam_logs(email,submit_time) VALUES(:email,NOW())";
         $stmt=$this->conn->prepare($sql);
         $stmt->execute(["email"=>$email]);
-        $result=$stmt->fetch(PDO::FETCH_ASSOC);
-        return($result);
         }
         else
         {
@@ -51,15 +70,13 @@ Class Auth extends Connection{
                     $sql="INSERT INTO  banned_user(email,createdAt) VALUES(:email,NOW())";
                     $stmt=$this->conn->prepare($sql);
                     $stmt->execute(["email"=>$email]);
-                    $result=NULL;
-                    return $result; 
             }
             else
             {
                 // $sql="SELECT ban.createdAt,spamlog.submit_time from banned_user ban LEFT JOIN";
-                $sql="SELECT email from banned_user where createdAt<NOW()-INTERVAL 24 HOUR";
+                $sql="SELECT email from banned_user where createdAt < NOW()-INTERVAL 24 HOUR  AND email=:email";
                 $stmt=$this->conn->prepare($sql);
-                $stmt->execute();
+                $stmt->execute(["email"=>$email]);
                 $result=$stmt->fetch(PDO::FETCH_ASSOC); 
                 if($result!=NULL)
                 {
@@ -74,6 +91,7 @@ Class Auth extends Connection{
             }
         }
     }
+
     public function del_ban_user($email){
         $sql="DELETE FROM banned_user where email=:email";
         $stmt=$this->conn->prepare($sql);
@@ -84,27 +102,17 @@ Class Auth extends Connection{
         $stmt=$this->conn->prepare($sql);
         $stmt->execute(["email"=>$email]);
     }
-
-    public function banned_user($email)
-    {
-        $sql="SELECT email from banned_user where email=:email";
+    public function User_ban_time($email){
+        $sql="SELECT 24-TIMESTAMPDIFF(HOUR,NOW(),createdAt) AS remaining_hours FROM banned_user WHERE email=:email";
         $stmt=$this->conn->prepare($sql);
         $stmt->execute(["email"=>$email]);
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $time_left=$result["remaining_hours"];
+        return($time_left);
     }
-    // public function verify_otp($otp)
-    // {
-    //     $sql="SELECT otp from otp_detail where otp=:otp AND createdAt"
-    // }
-   public function spam_count($email){
-    $sql="SELECT COUNT(*) as count  FROM spam_logs where email=:email AND submit_time > NOW()-INTERVAL 5 MINUTE";
-    $stmt=$this->conn->prepare($sql);
-    $stmt->execute(["email"=>$email]);
-    $res=$stmt->fetch(PDO::FETCH_ASSOC);
-    $count=$res["count"];
-    return($count);
-   }
+   /*-------Contact Form spam filter code ends-----------*/
+
+
     public function Register($fname,$lname,$email,$phone,$hash)
     { 
         $sql="INSERT INTO db_user(first_name,last_name,email,phone,password) VALUES(:fname,:lname,:email,:phone,:hash)";

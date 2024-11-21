@@ -199,8 +199,8 @@
                                         </span>
                                     </div>';
                                 </div>
-                                <div id="form-response" style="background-image:none;"><!-- on succesfull mail submittion-->
-
+                                <div id="form-response" ><!-- on succesfull mail submittion-->
+                                             
                                 </div>
                                 <div class="mb-3">
                                     <input type="text" class="form-control para" id="exampleName5" name="name" placeholder="Full Name" required>
@@ -291,25 +291,21 @@
                     $.ajax({
                         url:"includes/action.php",
                         method:"post",
-                        data:$("#contact-form").serialize()+"&action=Contact",
+                        data:$("#contact-form").serialize()+"&action=contact",
                         dataType:"json",
                         success:function(response){
-<<<<<<< HEAD
-                        console.log(response);
-                        //     console.log(response.msg);
-                        //    if(response.status=="success")
-                        //    {
-                        //         console.log(response.msg);
-                        //         $("#form-response").html(response.msg);
-                        //    }
-=======
+                        if(response.status=="success")
+                        {
+
+                            console.log(response);
                             console.log(response.msg);
-                           if(response.status=="success")
-                           {
-                                console.log(response.msg);
-                                $("#form-response").html(response.msg);
-                           }
->>>>>>> 15433eeafea1fc719e1a83ca104a436bbff6841d
+                            $("#form-response").html(response.msg);
+                        }
+                        else if(response.status=="failed")
+                        {
+                            console.log(response.msg);
+                            $("#form-response").html(response.msg);
+                        }
                         }
                     });
                 }

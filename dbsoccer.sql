@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 12:57 PM
+-- Generation Time: Nov 21, 2024 at 02:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -33,6 +33,13 @@ CREATE TABLE `banned_user` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `banned_user`
+--
+
+INSERT INTO `banned_user` (`id`, `email`, `createdAt`) VALUES
+(43, 'architv2023@gmail.com', '2024-11-20 18:08:24');
+
 -- --------------------------------------------------------
 
 --
@@ -50,13 +57,6 @@ CREATE TABLE `db_user` (
   `isAuthenticated` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `db_user`
---
-
-INSERT INTO `db_user` (`id`, `first_name`, `last_name`, `email`, `phone`, `password`, `deleted`, `isAuthenticated`) VALUES
-(55, 'archit', 'verma', 'architv18@gmail.com', '6239763288', '$2y$10$HZuMb6CTHsB51Nrt18NW4e1uyl8scaR/uBZJJdHgmL0tV11wFNLjK', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -69,6 +69,14 @@ CREATE TABLE `mail_subscribers` (
   `email` varchar(100) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mail_subscribers`
+--
+
+INSERT INTO `mail_subscribers` (`id`, `name`, `email`, `createdAt`) VALUES
+(24, 'archit verma', 'architv2023@gmail.com', '2024-11-21 12:44:19'),
+(25, 'archit verma', 'architv18@gmail.com', '2024-11-21 12:54:20');
 
 -- --------------------------------------------------------
 
@@ -83,13 +91,6 @@ CREATE TABLE `otp_detail` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `otp_detail`
---
-
-INSERT INTO `otp_detail` (`id`, `email`, `otp`, `createdAt`) VALUES
-(26, 'architv18@gmail.com', '99404901', '2024-11-19 11:44:10');
-
 -- --------------------------------------------------------
 
 --
@@ -101,6 +102,17 @@ CREATE TABLE `spam_logs` (
   `email` varchar(50) NOT NULL,
   `submit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `spam_logs`
+--
+
+INSERT INTO `spam_logs` (`id`, `email`, `submit_time`) VALUES
+(311, 'architv2023@gmail.com', '2024-11-21 13:06:45'),
+(312, 'architv2023@gmail.com', '2024-11-21 13:06:53'),
+(313, 'architv2023@gmail.com', '2024-11-21 13:06:53'),
+(314, 'architv2023@gmail.com', '2024-11-21 13:06:58'),
+(315, 'architv2023@gmail.com', '2024-11-21 13:06:58');
 
 --
 -- Indexes for dumped tables
@@ -131,6 +143,12 @@ ALTER TABLE `otp_detail`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `spam_logs`
+--
+ALTER TABLE `spam_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -138,25 +156,31 @@ ALTER TABLE `otp_detail`
 -- AUTO_INCREMENT for table `banned_user`
 --
 ALTER TABLE `banned_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `mail_subscribers`
 --
 ALTER TABLE `mail_subscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `otp_detail`
 --
 ALTER TABLE `otp_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `spam_logs`
+--
+ALTER TABLE `spam_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

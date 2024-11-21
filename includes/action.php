@@ -29,7 +29,7 @@
             require "update.php";
 
         }
-        else if ($_POST["action"] == "Contact"){
+        else if ($_POST["action"] == "contact"){
                 
             require "contact.php";
         }
