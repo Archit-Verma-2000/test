@@ -294,6 +294,7 @@
                         data:$("#contact-form").serialize()+"&action=Contact",
                         dataType:"json",
                         success:function(response){
+<<<<<<< HEAD
                         console.log(response);
                         //     console.log(response.msg);
                         //    if(response.status=="success")
@@ -301,6 +302,14 @@
                         //         console.log(response.msg);
                         //         $("#form-response").html(response.msg);
                         //    }
+=======
+                            console.log(response.msg);
+                           if(response.status=="success")
+                           {
+                                console.log(response.msg);
+                                $("#form-response").html(response.msg);
+                           }
+>>>>>>> 15433eeafea1fc719e1a83ca104a436bbff6841d
                         }
                     });
                 }

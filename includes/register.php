@@ -26,14 +26,22 @@
          // Sanitize inputs
           try {
               $mail->isSMTP();
+<<<<<<< HEAD
               $mail->Host = $_ENV['MAIL_HOST']; // Correct SMTP server
+=======
+              $mail->Host = 'smtp.gmail.com'; // Correct SMTP server
+>>>>>>> 15433eeafea1fc719e1a83ca104a436bbff6841d
               $mail->SMTPAuth = true;
                
               // Use your own Gmail account credentials to authenticate
               $mail->Username = $_ENV['Username'];  // Your Gmail address
               $mail->Password =$_ENV['Password'];  // Your Gmail address
               $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption method
+<<<<<<< HEAD
               $mail->Port = $_ENV['MAIL_PORT'];  // TLS port is 587
+=======
+              $mail->Port = 587;  // TLS port is 587
+>>>>>>> 15433eeafea1fc719e1a83ca104a436bbff6841d
           
               // Set the sender email (user's email address)
               $mail->setFrom( $_ENV['Username']);  // $email is user input
