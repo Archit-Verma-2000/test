@@ -294,12 +294,13 @@
                         data:$("#contact-form").serialize()+"&action=Contact",
                         dataType:"json",
                         success:function(response){
-                            console.log(response.msg);
-                           if(response.status=="success")
-                           {
-                                console.log(response.msg);
-                                $("#form-response").html(response.msg);
-                           }
+                        console.log(response);
+                        //     console.log(response.msg);
+                        //    if(response.status=="success")
+                        //    {
+                        //         console.log(response.msg);
+                        //         $("#form-response").html(response.msg);
+                        //    }
                         }
                     });
                 }
