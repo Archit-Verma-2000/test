@@ -19,7 +19,7 @@
             $arr=["status"=>"failed","msg"=>$db->msg('danger', $msg)];
             $res=json_encode($arr);
             echo $res;
-        }
+        } 
     }
     else
     {

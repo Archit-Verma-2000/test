@@ -8,7 +8,6 @@
         $mailmsg = $db->test_input($_POST["message"]);
         
       
-            $db->mail_user_add($name,$email);
             // Load Composer's autoloader
             require '../vendor/autoload.php';
             $mail = new PHPMailer(true);

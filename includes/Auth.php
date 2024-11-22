@@ -73,7 +73,6 @@ Class Auth extends Connection{
             }
             else
             {
-                // $sql="SELECT ban.createdAt,spamlog.submit_time from banned_user ban LEFT JOIN";
                 $sql="SELECT email from banned_user where createdAt < NOW()-INTERVAL 24 HOUR  AND email=:email";
                 $stmt=$this->conn->prepare($sql);
                 $stmt->execute(["email"=>$email]);
@@ -84,10 +83,6 @@ Class Auth extends Connection{
                     $this->del_ban_user_log($result["email"]);
                 }
                 return $result;
-                // else
-                // {
-
-                // }
             }
         }
     }
@@ -103,7 +98,7 @@ Class Auth extends Connection{
         $stmt->execute(["email"=>$email]);
     }
     public function User_ban_time($email){
-        $sql="SELECT 24-TIMESTAMPDIFF(HOUR,NOW(),createdAt) AS remaining_hours FROM banned_user WHERE email=:email";
+        $sql="SELECT 24-TIMESTAMPDIFF(HOUR,createdAt,Now()) AS remaining_hours FROM banned_user WHERE email=:email";
         $stmt=$this->conn->prepare($sql);
         $stmt->execute(["email"=>$email]);
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
