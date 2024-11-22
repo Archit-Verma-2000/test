@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2024 at 02:29 PM
+-- Generation Time: Nov 22, 2024 at 07:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -38,7 +38,7 @@ CREATE TABLE `banned_user` (
 --
 
 INSERT INTO `banned_user` (`id`, `email`, `createdAt`) VALUES
-(43, 'architv2023@gmail.com', '2024-11-20 18:08:24');
+(60, 'architv2023@gmail.com', '2024-11-21 11:37:53');
 
 -- --------------------------------------------------------
 
@@ -75,8 +75,7 @@ CREATE TABLE `mail_subscribers` (
 --
 
 INSERT INTO `mail_subscribers` (`id`, `name`, `email`, `createdAt`) VALUES
-(24, 'archit verma', 'architv2023@gmail.com', '2024-11-21 12:44:19'),
-(25, 'archit verma', 'architv18@gmail.com', '2024-11-21 12:54:20');
+(39, 'archit verma', 'architv2023@gmail.com', '2024-11-22 06:37:29');
 
 -- --------------------------------------------------------
 
@@ -108,11 +107,11 @@ CREATE TABLE `spam_logs` (
 --
 
 INSERT INTO `spam_logs` (`id`, `email`, `submit_time`) VALUES
-(311, 'architv2023@gmail.com', '2024-11-21 13:06:45'),
-(312, 'architv2023@gmail.com', '2024-11-21 13:06:53'),
-(313, 'architv2023@gmail.com', '2024-11-21 13:06:53'),
-(314, 'architv2023@gmail.com', '2024-11-21 13:06:58'),
-(315, 'architv2023@gmail.com', '2024-11-21 13:06:58');
+(423, 'architv2023@gmail.com', '2024-11-22 06:37:29'),
+(424, 'architv2023@gmail.com', '2024-11-22 06:37:34'),
+(425, 'architv2023@gmail.com', '2024-11-22 06:37:39'),
+(426, 'architv2023@gmail.com', '2024-11-22 06:37:44'),
+(427, 'architv2023@gmail.com', '2024-11-22 06:37:49');
 
 --
 -- Indexes for dumped tables
@@ -156,31 +155,31 @@ ALTER TABLE `spam_logs`
 -- AUTO_INCREMENT for table `banned_user`
 --
 ALTER TABLE `banned_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `mail_subscribers`
 --
 ALTER TABLE `mail_subscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `otp_detail`
 --
 ALTER TABLE `otp_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `spam_logs`
 --
 ALTER TABLE `spam_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
