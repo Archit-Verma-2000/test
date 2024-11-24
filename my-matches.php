@@ -1,8 +1,12 @@
 <?php
+   session_start();
    $url=$_SERVER["PHP_SELF"];
    $arr=explode("/",$url);
    $root=$arr[1];
    $server=$_SERVER["SERVER_NAME"];
+   include "includes/Auth.php";
+   $db=new Auth();
+   $data=$db->Login($_SESSION["user"]);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,7 @@
                </a>
                <div class="d-flex flex-row order-2 order-lg-3 user_info">
                   <?php
-                     if(!isset($_COOKIE["email"]))
+                     if(!isset($_SESSION["user"]))
                      {
                   ?>
                   <div class="group_btn d-none d-sm-block">
@@ -79,10 +83,8 @@
                               <img src="assets/images/dp.png" alt="dp">
                               <span>
                                     <?php
-                                       if(isset($_COOKIE["email"]))
+                                       if(isset($_SESSION["user"]))
                                        {
-                                          session_start();
-                                          include "includes/session.php";
                                           echo $data["first_name"]." ".$data["last_name"];
                                        }
                                        else

@@ -1,12 +1,20 @@
 <?php
-
+session_start();
 require "Auth.php";
 if(!isset($_SESSION["user"]))
 {
-   header("Location: ../login.php"); 
+   if(isset($_COOKIE["email"]))
+   {
+      $_SESSION["user"]=$_COOKIE["email"];
+      header("Location:Admin/my-profile.php");
+   }
+   else
+   {
+      header("Location:login.php");
+   }
 }
 
-$data=$db->Login($_SESSION["user"]);
+
 // if($data==NULL)
 // {
 //     echo "null";

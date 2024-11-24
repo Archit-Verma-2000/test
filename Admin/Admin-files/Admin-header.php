@@ -1,12 +1,12 @@
 <?php
-    if(!(isset($_COOKIE["email"])))
-    {
-        header("Location:login.php");
-    }
+    session_start();
+    include "../includes/Auth.php";
     $server=$_SERVER["SERVER_NAME"];
     $url=$_SERVER["PHP_SELF"];
     $arr=explode("/",$url);
     $root=$arr[1];
+    $db= new Auth();
+    $data=$db->Login($_SESSION["user"]);
 ?>
 
 <!DOCTYPE html>
@@ -70,10 +70,9 @@
                             <a href="#">
                                     <img src="../assets/images/dp.png" alt="dp"><span id="upd-user">
                                         <?php
-                                            session_start();
-                                             if(isset($_COOKIE["email"]))
+                                            
+                                             if(isset($_SESSION["user"]))
                                              {
-                                                 include "../includes/session.php";
                                                
                                         ?>
                                             <?=$data["first_name"]." ".$data["last_name"]?>

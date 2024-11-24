@@ -1,8 +1,12 @@
 <?php
+    session_start();
+    include "includes/Auth.php";
     $server=$_SERVER["SERVER_NAME"];
     $url=$_SERVER["PHP_SELF"];
     $arr=explode("/",$url);
     $root=$arr[1];
+    $db= new Auth();
+    $data=$db->Login($_SESSION["user"]);
 ?>
 
 
@@ -54,7 +58,7 @@
                 </a>
                 <div class="d-flex flex-row order-2 order-lg-3 user_info">
                     <?php
-                        if(!isset($_COOKIE["email"]))
+                        if(!isset($_SESSION["user"]))
                         {
                     ?>
                     <div class="group_btn d-none d-sm-block">
@@ -76,10 +80,9 @@
                                     <img src="assets/images/dp.png" alt="dp">
                                         <span>
                                             <?php
-                                                session_start();
-                                                if(isset($_COOKIE["email"]))
+                                                if(isset($_SESSION["user"]))
                                                 {
-                                                    include "includes/session.php";
+                                                
                                             ?>
                                                 <?=$data["first_name"]." ".$data["last_name"]?>
                                             <?php
@@ -94,7 +97,7 @@
                                         </span>
                                     </a>
                                     <?php
-                                    if(isset($_COOKIE["email"]))
+                                    if(isset($_SESSION["user"]))
                                     {
                                     ?>
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -103,7 +106,7 @@
                                     ?>
                             </div>
                             <?php
-                                if(isset($_COOKIE["email"]))
+                                if(isset($_SESSION["user"]))
                             {
                             ?>
                                 <div class="dropdown">

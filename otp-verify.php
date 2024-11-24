@@ -1,9 +1,4 @@
-<?php
-    if(isset($_COOKIE["email"])){
-        header("Location:my-profile.php");
-    }
 
-?>
 <!DOCTYPE html>
 <html lang="en-US">
 
