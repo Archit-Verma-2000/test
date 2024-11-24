@@ -110,7 +110,7 @@
                                         <li><a href="http://<?=$server?>/<?=$root?>/Admin/my-profile.php"><img src="assets/images/user.svg" alt="user">My Profile</a>
                                         </li>
                                         <li>
-                                            <a href="my-matches.html"><img src="assets/images/stadium.svg" alt="stadium">My Matches</a>
+                                            <a href="my-matches.php"><img src="assets/images/stadium.svg" alt="stadium">My Matches</a>
                                         </li>
                                    
                                         <li>

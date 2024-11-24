@@ -92,7 +92,7 @@
                             <div class="dropdown">
                                 <ul>
                                     <li>
-                                        <a href="my-matches.html"><img src="../assets/images/stadium.svg" alt="stadium">My
+                                        <a href='http://<?=$server?>/<?=$root?>/my-matches.php'><img src="../assets/images/stadium.svg" alt="stadium">My
                                             Matches</a>
                                     </li>
                                     <li>
@@ -115,7 +115,7 @@
                             <a class="nav-link" href='http://<?=$server?>/<?=$root?>/about.php'>ABOUT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href='http://<?=$server?>/<?=$root?>/how-to-play.html'>HOW TO PLAY</a>
+                            <a class="nav-link" href='http://<?=$server?>/<?=$root?>/how-to-play.php'>HOW TO PLAY</a>
                         </li>
 
                         <li class="nav-item">

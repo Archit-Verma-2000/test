@@ -1,3 +1,10 @@
+<?php
+   $url=$_SERVER["PHP_SELF"];
+   $arr=explode("/",$url);
+   $root=$arr[1];
+   $server=$_SERVER["SERVER_NAME"];
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
    <head>
@@ -42,6 +49,10 @@
                   alt="Soccer Spotlight Logo" id="logo">
                </a>
                <div class="d-flex flex-row order-2 order-lg-3 user_info">
+                  <?php
+                     if(!isset($_COOKIE["email"]))
+                     {
+                  ?>
                   <div class="group_btn d-none d-sm-block">
                      <a href="login.php"
                         class="group_link log_in registration">LOG
@@ -49,6 +60,9 @@
                      <a href="signup.php"
                         class="group_link registration ">SIGN UP</a>
                   </div>
+                  <?php
+                     }
+                  ?>
                   <button class="navbar-toggler" type="button"
                      data-bs-toggle="collapse"
                      data-bs-target="#navDefault"
@@ -61,19 +75,34 @@
                   <div class="profile">
                      <div class="avatar">
                         <div class="avatar-content">
-                           <a href="#">
-                           <img src="assets/images/dp.png" alt="dp"><span>Johan Deo</span></a>
+                           <a href="#" style="text-decoration:none">
+                              <img src="assets/images/dp.png" alt="dp">
+                              <span>
+                                    <?php
+                                       if(isset($_COOKIE["email"]))
+                                       {
+                                          session_start();
+                                          include "includes/session.php";
+                                          echo $data["first_name"]." ".$data["last_name"];
+                                       }
+                                       else
+                                       {
+                                          echo "Guest";
+                                       }
+                                    ?>
+                              </span>
+                           </a>
                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
                         </div>
                         <div class="dropdown">
                            <ul>
-                              <li><a href="#"><img src="assets/images/user.svg" alt="user">My Profile</a>
+                              <li><a href="http://<?=$server?>/<?=$root?>/Admin/my-profile.php"><img src="assets/images/user.svg" alt="user">My Profile</a>
                               </li>
                               <li>
-                                 <a href="my-matches.html"><img src="assets/images/stadium.svg" alt="stadium">My Matches</a>
+                                 <a href="my-matches.php"><img src="assets/images/stadium.svg" alt="stadium">My Matches</a>
                               </li>
                               <li>
-                                 <a href="#"><img src="assets/images/logout.svg" alt="logout">log Out</a>
+                                 <a href="http://<?=$server?>/<?=$root?>/Admin/logout.php"><img src="assets/images/logout.svg" alt="logout">log Out</a>
                               </li>
                            </ul>
                         </div>
@@ -94,7 +123,7 @@
                         US</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">HOW TO PLAY</a>
+                        <a class="nav-link" href="how-to-play.php">HOW TO PLAY</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link pd_right"
