@@ -4,6 +4,7 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ .'/../');
 $dotenv->load();
 
+
 Class Connection {
     private $dsn;
     private $user;

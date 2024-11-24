@@ -83,8 +83,19 @@
                                              }
                                         ?>
                                         </span></a>
+                                        <?php
+                                        if(isset($_COOKIE["email"]))
+                                        {
+                                    ?>
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <?php
+                                        }
+                                    ?>
                             </div>
+                                    <?php
+                                        if(isset($_COOKIE["email"]))
+                                        {
+                                    ?>
                                 <div class="dropdown">
                                     <ul>
                                         <li><a href="my-profile.php"><img src="assets/images/user.svg" alt="user">My Profile</a>
@@ -97,6 +108,9 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <?php
+                                        }
+                                ?>
                         </div>
                    </div>
                 </div>
@@ -261,6 +275,7 @@
                         {
                             url="login.php?";
                             window.location.href=url;
+                            console.log(response);
                         }
                         else if(response.status=="failed")
                         {

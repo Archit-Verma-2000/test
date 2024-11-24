@@ -55,25 +55,20 @@
             e.preventDefault();
             $("#update-error").html(" ");
             $.ajax({
-                url:"assets/php/action.php",
+                url:"../includes/action.php",
                 method:"post",
                 data:$("#update-form").serialize()+"&action=update",
+                dataType:"json",
                 success:function(response){
-                    console.log(response);
-                    var arr=response.split('+');
-                    var str=arr[0].split('/');
-                    console.log(arr);
-                    console.log(str);
-                    if(str[0]=="updated")
-                    {   $("#update-msg").html(arr[1]);
-                        console.log("insideupdated");
-                        $("#upd-user").html(str[1]+" "+str[2]);
-                        $("#upd-user-icon").html(str[1]+" "+str[2]);
+                    if(response.status=="success")
+                    {  
+                        console.log("1");
+                        console.log(response.msg);
                     }
-                    else
-                    {   console.log("not");
-                        console.log(response);
-                        $("#update-msg").html(response);
+                    else if(response.status=="failed")
+                    {   
+                        console.log(response.msg);
+                        $("#update-msg").html(response.msg);
                     }
                 }
             });

@@ -20,7 +20,7 @@
          {
              $_SESSION["user"]=$email;
              setcookie("email",$email,time()+60*60*24*30,"/");
-             $msg=["status"=>"success","msg"=>$db->msg("sucess","successfully updated")];
+             $msg=["status"=>"success","msg"=>$db->msg("success","Updated successfully")];
              $json=json_encode($msg);
              echo $json;
          }

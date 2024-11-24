@@ -69,7 +69,7 @@
                                             session_start();
                                              if(isset($_SESSION["user"]))
                                              {
-                                                 include "assets/php/session.php";
+                                                 include "includes/session.php";
                                                 //  print_r($data);
                                         ?>
                                             <?=$data["first_name"]." ".$data["last_name"]?>
@@ -83,8 +83,19 @@
                                              }
                                         ?>
                                         </span></a>
+                                    <?php
+                                        if(isset($_COOKIE["email"]))
+                                        {
+                                    ?>
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <?php
+                                        }
+                                    ?>
                             </div>
+                                    <?php
+                                        if(isset($_COOKIE["email"]))
+                                        {
+                                    ?>
                                 <div class="dropdown">
                                     <ul>
                                         <li><a href="my-profile.php"><img src="assets/images/user.svg" alt="user">My Profile</a>
@@ -93,10 +104,13 @@
                                             <a href="my-matches.html"><img src="assets/images/stadium.svg" alt="stadium">My Matches</a>
                                         </li>
                                         <li>
-                                            <a href="assets/php/logout.php"><img src="assets/images/logout.svg" alt="logout">log Out</a>
+                                            <a href="http://<?=$server?>/<?=$root?>/Admin/logout.php"><img src="assets/images/logout.svg" alt="logout">log Out</a>
                                         </li>
                                     </ul>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                         </div>
                    </div>
                 </div>

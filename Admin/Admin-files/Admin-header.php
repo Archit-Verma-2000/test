@@ -3,6 +3,10 @@
     {
         header("Location:login.php");
     }
+    $server=$_SERVER["SERVER_NAME"];
+    $url=$_SERVER["PHP_SELF"];
+    $arr=explode("/",$url);
+    $root=$arr[1];
 ?>
 
 <!DOCTYPE html>
@@ -54,10 +58,6 @@
                     <img src="../assets/images/Logo-dark-n.png" alt="Soccer Spotlight Logo" id="logo">
                 </a>
                 <div class="d-flex flex-row order-2 order-lg-3 user_info">
-                    <div class="group_btn d-none d-sm-block">
-                        <a href="../login.php" class="group_link log_in registration">LOG IN</a>
-                        <a href="../signup.php" class="group_link registration ">SIGN UP</a>
-                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navDefault"
                         aria-controls="navDefault" aria-expanded="false" aria-label="Toggle navigation" id="toggleIcon">
                         <span class="bar_one"></span>
@@ -91,14 +91,12 @@
                             </div>
                             <div class="dropdown">
                                 <ul>
-                                    <li><a href="my-profile.php"><img src="../assets/images/user.svg" alt="user">My Profile</a>
-                                    </li>
                                     <li>
                                         <a href="my-matches.html"><img src="../assets/images/stadium.svg" alt="stadium">My
                                             Matches</a>
                                     </li>
                                     <li>
-                                        <a href="logout.php"><img src="../assets/images/logout.svg" alt="logout">log Out</a>
+                                        <a href='http://<?=$server?>/<?=$root?>/Admin/logout.php'><img src="../assets/images/logout.svg" alt="logout">log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -108,20 +106,20 @@
                 <div class="collapse navbar-collapse justify-content-end order-3 order-lg-2" id="navDefault">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">
+                            <a class="nav-link" href='http://<?=$server?>/<?=$root?>/index.php'>
                                 HOME
                             </a>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.php">ABOUT US</a>
+                            <a class="nav-link" href='http://<?=$server?>/<?=$root?>/about.php'>ABOUT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HOW TO PLAY</a>
+                            <a class="nav-link" href='http://<?=$server?>/<?=$root?>/how-to-play.html'>HOW TO PLAY</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link pd_right" href="contact.php">CONTACT US</a>
+                            <a class="nav-link pd_right" href='http://<?=$server?>/<?=$root?>/contact.php'>CONTACT US</a>
                         </li>
                         <li class="nav-item d-block d-sm-none">
                             <a class="nav-link registration" href="login.php">LOG IN</a>
