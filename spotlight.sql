@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2024 at 07:41 AM
+-- Generation Time: Nov 25, 2024 at 05:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbsoccer`
+-- Database: `spotlight`
 --
 
 -- --------------------------------------------------------
@@ -57,6 +57,13 @@ CREATE TABLE `db_user` (
   `isAuthenticated` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `db_user`
+--
+
+INSERT INTO `db_user` (`id`, `first_name`, `last_name`, `email`, `phone`, `password`, `deleted`, `isAuthenticated`) VALUES
+(84, 'Archit', 'Verma', 'architv2023@gmail.com', '6239763288', '$2y$10$RAudp4Z7o8.TH5nrTwUQQOHs6fZcmZfZcrGZQoE0hyJ6jTgq50qbu', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +96,13 @@ CREATE TABLE `otp_detail` (
   `otp` varchar(8) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `otp_detail`
+--
+
+INSERT INTO `otp_detail` (`id`, `email`, `otp`, `createdAt`) VALUES
+(31, 'architv2023@gmail.com', '50755080', '2024-11-22 13:51:19');
 
 -- --------------------------------------------------------
 
@@ -161,7 +175,7 @@ ALTER TABLE `banned_user`
 -- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `mail_subscribers`
@@ -173,7 +187,7 @@ ALTER TABLE `mail_subscribers`
 -- AUTO_INCREMENT for table `otp_detail`
 --
 ALTER TABLE `otp_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `spam_logs`
