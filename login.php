@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if(isset($_COOKIE["email"])){
         header("Location:Admin/my-profile.php");
     }
@@ -71,7 +72,7 @@
                                 <a href="#">
                                     <img src="assets/images/dp.png" alt="dp"><span>
                                         <?php
-                                            session_start();
+                                        
                                              if(isset($_SESSION["user"]))
                                              {
                                                  include "includes/session.php";
@@ -121,7 +122,11 @@
                 </div>
                 <div class="collapse navbar-collapse justify-content-end order-3 order-lg-2" id="navDefault">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <?php
+                            if(isset($_SESSION["user"]))
+                            {
+                        ?>
+                              <li class="nav-item">
                             <a class="nav-link" href="index.php" >
                                 HOME
                             </a>
@@ -137,6 +142,10 @@
                         <li class="nav-item">
                             <a class="nav-link pd_right" href="contact.php">CONTACT US</a>
                         </li>
+                        <?php
+                            }
+                        ?>
+                      
                         <li class="nav-item d-block d-sm-none"> 
                             <a class="nav-link registration" href="login.php">LOG IN</a>
                         </li>
@@ -264,6 +273,7 @@
     <script>
         $(document).ready(function(){
             $("#Login-btn").click(function(e){
+                $("#Login-btn").html("...Please wait");
                 e.preventDefault();
                 $.ajax({
                     url:"includes/action.php",
@@ -274,7 +284,7 @@
                         console.log(response);
                        
                         if(response.status=="success"){
-                            $("#Login-btn").html("...Please wait");
+                           
                             $("#Login-response").html(response.msg);
                             setTimeout(() => {
                                 url="Admin/my-profile.php";
@@ -283,7 +293,7 @@
                         }
                         else if(response.status=="otp-send")
                         {   
-                            $("#Login-btn").html("...Please wait");
+                            
                             $("#Login-response").html(response.msg);
                             setTimeout(() => {
                             url="otp-verify.php?flag=2"+"&email="+response.email;
@@ -292,6 +302,7 @@
                         }     
                         else if(response.status=="failed")
                         {
+                            $("#Login-btn").html("Login");
                             $("#Login-response").html(response.msg);
                             $(".alert button").click(function(e){
                                 e.preventDefault();

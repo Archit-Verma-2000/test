@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 12:58 PM
+-- Generation Time: Nov 25, 2024 at 01:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -76,6 +76,13 @@ CREATE TABLE `otp_detail` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `otp_detail`
+--
+
+INSERT INTO `otp_detail` (`id`, `email`, `otp`, `createdAt`) VALUES
+(35, 'architv2023@gmail.com', '83653072', '2024-11-25 12:27:36');
+
 -- --------------------------------------------------------
 
 --
@@ -136,7 +143,7 @@ ALTER TABLE `banned_user`
 -- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `mail_subscribers`
@@ -148,7 +155,7 @@ ALTER TABLE `mail_subscribers`
 -- AUTO_INCREMENT for table `otp_detail`
 --
 ALTER TABLE `otp_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `spam_logs`

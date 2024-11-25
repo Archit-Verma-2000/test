@@ -116,6 +116,11 @@
                 </div>
                 <div class="collapse navbar-collapse justify-content-end order-3 order-lg-2" id="navDefault">
                     <ul class="navbar-nav">
+                        <?php
+                              if(isset($_SESSION["user"]))
+                              {
+                        ?>
+                  
                         <li class="nav-item">
                             <a class="nav-link" href="index.php" >
                                 HOME
@@ -131,6 +136,9 @@
                         <li class="nav-item">
                             <a class="nav-link pd_right" href="contact.php">CONTACT US</a>
                         </li>
+                        <?php
+                              }
+                        ?>
                         <li class="nav-item d-block d-sm-none"> 
                             <a class="nav-link registration" href="login.php">LOG IN</a>
                         </li>
