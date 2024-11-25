@@ -140,20 +140,13 @@
                         <img src="assets/images/logo.png" alt="Spovest Logo">
                     </a>
                 </div>
-                <form action="#" method="POST" class="mt-60" id="otp-form">
-                    <div id="otp-send">
-                    <?php
-                        if(!(isset($_POST["rem-success"])))
-                        {
-                  
-                            echo $_GET["otpsuccess"];
-                        }
-                        ?>
-                    </div>
-                  
-                    <div id="Login-response">
+               
+                        <div id="Login-response">
 
-                    </div>
+                        </div>
+                  
+                <form action="#" method="POST" class="mt-60" id="otp-form">
+                
                     <h1 class="form_title">Otp verify</h1>
                     <div class="mb-3">
                         <input type="hidden" name="email" value="<?=$_GET['email']?>" placeholder="Enter otp" class="form-control para" id="otp">
@@ -266,7 +259,7 @@
                     success:function(response){     
                         // console.log(response);   
                         if(response.status=="success"){
-                            $("#Login-response").html(response.msg);
+                            // $("#Login-response").html(response.msg);
                         }
                         else if(response.status=="loggedIn"){
                             console.log("inside redirect")

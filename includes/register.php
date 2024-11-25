@@ -71,7 +71,7 @@
             
               if($mail->send())
               {
-                   $msg=["status"=>"success","msg"=>$db->msg('success', "Mail has been sent")];
+                   $msg=["status"=>"success","msg"=>$db->msg('success', "Registered Successfully")];
                    $json=json_encode($msg);
                    echo $json;
               }

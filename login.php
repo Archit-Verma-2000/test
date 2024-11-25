@@ -39,6 +39,11 @@
     <link rel="stylesheet" href="assets/css/vendor/animate.css">
     <!--custom css start-->
     <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dnone{
+            display:none;
+        }
+    </style>
 </head>
 <body class="dark">
 
@@ -154,10 +159,18 @@
                         <img src="assets/images/logo.png" alt="Spovest Logo">
                     </a>
                 </div>
+                <div id="Login-response">
+                <?php
+                        if(isset($_GET["flag"])&&$_GET["flag"]==1)
+                        {    
+                            include "includes/Auth.php";
+                            $msg=$db->flag1();
+                            echo $msg;
+                        }
+                    ?>                     
+                </div>
                 <form action="#" method="POST" class="mt-60" id="Login-form">
-                    <div id="Login-error">
-
-                    </div>
+               
                     <h1 class="form_title">Log in</h1>
                     <div class="mb-3">
                         
@@ -259,25 +272,40 @@
                     dataType:"json",
                     success:function(response){
                         console.log(response);
+                       
                         if(response.status=="success"){
-                            url="Admin/my-profile.php";
-                            window.location.href=url;
+                            $("#Login-btn").html("...Please wait");
+                            $("#Login-response").html(response.msg);
+                            setTimeout(() => {
+                                url="Admin/my-profile.php";
+                                window.location.href=url;
+                            }, 3000);
                         }
                         else if(response.status=="otp-send")
                         {   
-                            console.log("inside success");
-                            url="otp-verify.php?otpsuccess="+encodeURIComponent(response.msg)+"&email="+response.email;
+                            $("#Login-btn").html("...Please wait");
+                            $("#Login-response").html(response.msg);
+                            setTimeout(() => {
+                            url="otp-verify.php?flag=2"+"&email="+response.email;
                             window.location.href=url;
+                            },3000);
                         }     
                         else if(response.status=="failed")
                         {
-                            $("#Login-error").html(response.msg);
+                            $("#Login-response").html(response.msg);
+                            $(".alert button").click(function(e){
+                                e.preventDefault();
+                                $(this).parent().addClass("dnone");
+                            });
                         }
                                
                     }
                 });
             });
-
+            $(".alert button").click(function(e){
+                e.preventDefault();
+                $(this).parent().addClass("dnone");
+            });
         });
     </script>
 </body>

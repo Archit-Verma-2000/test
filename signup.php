@@ -154,7 +154,7 @@
                     </a>
                 </div>
                 <form action="#" method="POST" class="mt-60 row" id="Register-form">
-                    <div id="Register-error">
+                    <div id="Register-response">
 
                     </div>
                     <h1 class="form_title col-sm-12">Let's Create Your Account</h1>
@@ -263,7 +263,7 @@
                 $("#Register-btn").val(".....Please wait");
                 if($("#Register-form")[0].checkValidity())
                 {   console.log(1);
-                    $("#Register-btn").val(".....Please wait");
+                    $("#Register-btn").html(".....Please wait");
                     $.ajax({
                       url:"includes/action.php",
                       method:"post",
@@ -273,13 +273,16 @@
                         console.log(response);
                         if(response.status=="success")
                         {
-                            url="login.php?";
-                            window.location.href=url;
-                            console.log(response);
+                            $("#Register-response").html(response.msg);
+                            setTimeout(()=>{
+                                url="login.php?flag=1";
+                                window.location.href=url;
+                                console.log(response);
+                            },2000) 
                         }
                         else if(response.status=="failed")
                         {
-                            $("#Register-error").html(response.msg);
+                            $("#Register-response").html(response.msg);
                         }
                       }  
                     })
