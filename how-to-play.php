@@ -1,12 +1,30 @@
 <?php
     session_start();
-    include "includes/Auth.php";
-    $server=$_SERVER["SERVER_NAME"];
-    $url=$_SERVER["PHP_SELF"];
-    $arr=explode("/",$url);
-    $root=$arr[1];
-    $db= new Auth();
-    $data=$db->Login($_SESSION["user"]);
+    if(!isset($_SESSION["user"]))
+    {
+        // header("Location:Login.php");
+        include "session.php";
+    }
+    else
+    {
+        include "includes/Auth.php";
+        $db= new Auth();
+        if(isset($_SESSION["user"])&&$db->Login($_SESSION["user"])==NULL)
+        {
+            unset($_SESSION["user"]);
+            setcookie("email",' ',1,"/");
+            header("Location:session.php");
+        }
+        else
+        {
+        $server=$_SERVER["SERVER_NAME"];
+        $url=$_SERVER["PHP_SELF"];
+        $arr=explode("/",$url);
+        $root=$arr[1];
+        $data=$db->Login($_SESSION["user"]);
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>

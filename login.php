@@ -2,7 +2,7 @@
     if(isset($_COOKIE["email"])){
         header("Location:Admin/my-profile.php");
     }
-
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
