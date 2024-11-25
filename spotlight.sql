@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 05:53 AM
+-- Generation Time: Nov 25, 2024 at 11:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -33,13 +33,6 @@ CREATE TABLE `banned_user` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `banned_user`
---
-
-INSERT INTO `banned_user` (`id`, `email`, `createdAt`) VALUES
-(60, 'architv2023@gmail.com', '2024-11-21 11:37:53');
-
 -- --------------------------------------------------------
 
 --
@@ -62,7 +55,7 @@ CREATE TABLE `db_user` (
 --
 
 INSERT INTO `db_user` (`id`, `first_name`, `last_name`, `email`, `phone`, `password`, `deleted`, `isAuthenticated`) VALUES
-(84, 'Archit', 'Verma', 'architv2023@gmail.com', '6239763288', '$2y$10$RAudp4Z7o8.TH5nrTwUQQOHs6fZcmZfZcrGZQoE0hyJ6jTgq50qbu', 1, 1);
+(86, 'Archit', 'Verma', 'architv2023@gmail.com', '6239763288', '$2y$10$5PQywX4E5yjA4zHhqOOVNefcHKYASewVAbHHpUxuCSwK1Kjgfxdg2', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -76,13 +69,6 @@ CREATE TABLE `mail_subscribers` (
   `email` varchar(100) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `mail_subscribers`
---
-
-INSERT INTO `mail_subscribers` (`id`, `name`, `email`, `createdAt`) VALUES
-(39, 'archit verma', 'architv2023@gmail.com', '2024-11-22 06:37:29');
 
 -- --------------------------------------------------------
 
@@ -102,7 +88,7 @@ CREATE TABLE `otp_detail` (
 --
 
 INSERT INTO `otp_detail` (`id`, `email`, `otp`, `createdAt`) VALUES
-(31, 'architv2023@gmail.com', '50755080', '2024-11-22 13:51:19');
+(33, 'architv2023@gmail.com', '75827734', '2024-11-25 10:14:12');
 
 -- --------------------------------------------------------
 
@@ -121,11 +107,9 @@ CREATE TABLE `spam_logs` (
 --
 
 INSERT INTO `spam_logs` (`id`, `email`, `submit_time`) VALUES
-(423, 'architv2023@gmail.com', '2024-11-22 06:37:29'),
-(424, 'architv2023@gmail.com', '2024-11-22 06:37:34'),
-(425, 'architv2023@gmail.com', '2024-11-22 06:37:39'),
-(426, 'architv2023@gmail.com', '2024-11-22 06:37:44'),
-(427, 'architv2023@gmail.com', '2024-11-22 06:37:49');
+(460, 'architv2023@gmail.com', '2024-11-25 10:12:44'),
+(461, 'architv2023@gmail.com', '2024-11-25 10:12:50'),
+(462, 'architv2023@gmail.com', '2024-11-25 10:12:59');
 
 --
 -- Indexes for dumped tables
@@ -169,31 +153,31 @@ ALTER TABLE `spam_logs`
 -- AUTO_INCREMENT for table `banned_user`
 --
 ALTER TABLE `banned_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `mail_subscribers`
 --
 ALTER TABLE `mail_subscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `otp_detail`
 --
 ALTER TABLE `otp_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `spam_logs`
 --
 ALTER TABLE `spam_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

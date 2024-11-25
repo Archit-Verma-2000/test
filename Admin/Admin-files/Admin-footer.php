@@ -62,8 +62,7 @@
                 success:function(response){
                     if(response.status=="success")
                     {  
-                        console.log("1");
-                        console.log(response.msg);
+                        $("#update-msg").html(response.msg);
                     }
                     else if(response.status=="failed")
                     {   

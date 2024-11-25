@@ -215,10 +215,8 @@
                     <div class="right_side_content d-flex justify-content-lg-end">
                         <div class="form_wrapper">
                             <h1>We'd love to hear from you</h1>
-                            <form action="#" method="post" id="contact-form">
-                                <div class="mb-3"><!-- on failed mail submittion-->
-
-                                    <div class="alert alert-danger  fade show dnone" id="form-error">
+                            <div id="form-response" ><!-- on succesfull mail submittion-->
+                                <div class="alert alert-danger  fade show dnone" id="form-error">
                                         <button class="btn btn-lg fs-5"  style="display:inline-block;background-color:none;width:0;padding:0;
                                         background-image: none;margin:0 20px 0 0;padding:0;color:rgba(0,0,0,0.6)">&times;
                                         </button>
@@ -227,11 +225,9 @@
                                                 All Fields are required
                                             </strong>
                                         </span>
-                                    </div>';
-                                </div>
-                                <div id="form-response" ><!-- on succesfull mail submittion-->
-                                             
-                                </div>
+                                    </div>';               
+                            </div>
+                            <form action="#" method="post" id="contact-form">
                                 <div class="mb-3">
                                     <input type="text" class="form-control para" id="exampleName5" name="name" placeholder="Full Name" required>
                                 </div>
@@ -317,7 +313,7 @@
                 console.log("inside btn");
                 if($("#contact-form")[0].checkValidity())
                 {
-                    console.log("form validated");
+                    $("#mail-btn").html("...Please wait");
                     $.ajax({
                         url:"includes/action.php",
                         method:"post",
@@ -326,13 +322,17 @@
                         success:function(response){
                         if(response.status=="success")
                         {
-
-                            console.log(response);
-                            console.log(response.msg);
                             $("#form-response").html(response.msg);
+                            setTimeout(()=>{
+                                $("#mail-btn").html("Submit");
+                            },2000)
                         }
                         else if(response.status=="failed")
                         {
+                            setTimeout(() => {
+                                $("#mail-btn").html("Submit");
+                            }, 2000);
+                           
                             console.log(response.msg);
                             $("#form-response").html(response.msg);
                         }
